@@ -8,7 +8,7 @@
     <style>
         body 
         {
-            
+            display: flex;
             justify-content: center;
         }
         #products {
@@ -25,36 +25,70 @@
             width: 50%;
         } 
         
+            #products div img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+            #products div h4 {
+                text-align: center;
+            }
+            #products div button {
+                display: block;
+                margin: 0 auto;
+                padding: 5px 10px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #products div button:hover {
+                background-color: #0056b3;
+            }
        
     </style>
 </head>
 <body>
         <div id="products"></div>
        
+
     <script>
-        axios.get('https://dummyjson.com/products')
-            .then(response => genTable(response.data.products))
+        axios.get('https://dummyjson.com/users')
+            .then(response => genTable(response.data.users))
             .catch(error => console.error(error));
 
-        function genTable(products) {
+
+
+        function genTable(users) {   
             document.getElementById('products').innerHTML = "";
-            products.forEach(function (product) {
-                var productss = document.createElement("div");
-                var productImg = document.createElement("img");
-                productImg.src = product.thumbnail;
-                productss.appendChild(productImg);
-                var productTitle = document.createElement("h4");
-                productTitle.innerText = product.title;
-                productss.appendChild(productTitle);
+            users.forEach(function (user) {
+                var userDiv = document.createElement("div");
+                // var userImg = document.createElement("img");
+                userImg.src = user.image;
+
+                userDiv.appendChild(userImg);
+                document
+                var userTitle = document.createElement("h4");
+                userTitle.innerText = user.firstName + " " + user.lastName;
                 var detailsList = document.createElement("button");
                 detailsList.innerText = "Details";
-                productss.appendChild(detailsList);
-                 detailsList.addEventListener('click', function () {
-                    
-              
+
+                userDiv.appendChild(userTitle);
+                userDiv.appendChild(detailsList);
+             detailsList.addEventListener('click', function () {
+                userDiv.appendChild(userTitle);
+                console.log(user.firstName);
+
+
+
             });
 
-                document.getElementById('products').appendChild(productss);
+
+
+
+
+                document.getElementById('products').appendChild(userDiv);
             
             });
         }

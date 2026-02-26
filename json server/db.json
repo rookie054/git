@@ -1,0 +1,46 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 25,
+      "grade": "A"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 22,
+      "grade": "B"
+    },
+    {
+      "id": 3,
+      "name": "Emily Johnson",
+      "age": 24,
+      "grade": "A-"
+    },
+    {
+      "id": 6,
+      "name": "broo",
+      "age": 24,
+      "grade": "A-"
+    }
+  ],
+  "todos": [],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
