@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="worker.js"></script>
+</head>
+<body>
+<script>
+
+    console.log("hii every one");
+    function addall() { 
+        vsr p=new Promise((resolve, reject) => {
+            var worker = new Worker("worker.js");
+            worker.onmessage = (e) => {
+                resolve(e.data);
+            };
+            worker.postMessage(0);
+        });
+    }
+    addall().then((data) => {
+        console.log(data);
+    });
+
+  </script>
+</body>
+</html>

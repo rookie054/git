@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body 
+        {
+            display: flex;
+            justify-content: center;
+        }
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            width: auto;
+        }
+         #products div {
+            /* display: flex; */
+            width: auto;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+            width: 50%;
+        } 
+        
+            #products div img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+            #products div h4 {
+                text-align: center;
+            }
+            #products div button {
+                display: block;
+                margin: 0 auto;
+                padding: 5px 10px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #products div button:hover {
+                background-color: #0056b3;
+            }
+       
+    </style>
+</head>
+<body>
+        <div id="products"></div>
+       
+
+    <script>
+        axios.get('https://dummyjson.com/recipes')
+            .then(response => genTable(response.data.recipes))
+            .catch(error => console.error(error));
+
+
+
+        function genTable(users) {   
+            document.getElementById('products').innerHTML = "";
+            users.forEach(function (user) {
+                var userDiv = document.createElement("div");
+                var userImg = document.createElement("img");
+                userImg.src = user.image;
+
+                userDiv.appendChild(userImg);
+                var userTitle = document.createElement("h4");
+                userTitle.innerText = user.firstName + " " + user.lastName;
+                var detailsList = document.createElement("button");
+                detailsList.innerText = "Details";
+
+                userDiv.appendChild(userTitle);
+                userDiv.appendChild(detailsList);
+                detailsList.addEventListener('click', function () {
+                    // Log user details on click (instead of re-appending title)
+                    console.log(`Name: ${user.firstName} ${user.lastName}, Email: ${user.email}`);
+                });
+
+                document.getElementById('products').appendChild(userDiv);
+            });
+        }
+
+           
+        
+    </script>
+</body>
+</html>

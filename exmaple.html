@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body 
+        {
+            
+            justify-content: center;
+        }
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            width: auto;
+        }
+         #products div {
+            /* display: flex; */
+            width: auto;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+            width: 50%;
+        } 
+        
+       
+    </style>
+</head>
+<body>
+        <div id="products"></div>
+       
+    <script>
+        axios.get('https://dummyjson.com/products')
+            .then(response => genTable(response.data.products))
+            .catch(error => console.error(error));
+
+        function genTable(products) {
+            document.getElementById('products').innerHTML = "";
+            products.forEach(function (product) {
+                var productss = document.createElement("div");
+                var productImg = document.createElement("img");
+                productImg.src = product.thumbnail;
+                productss.appendChild(productImg);
+                var productTitle = document.createElement("h4");
+                productTitle.innerText = product.title;
+                productss.appendChild(productTitle);
+                var detailsList = document.createElement("button");
+                detailsList.innerText = "Details";
+                productss.appendChild(detailsList);
+                 detailsList.addEventListener('click', function () {
+                    
+              
+            });
+
+                document.getElementById('products').appendChild(productss);
+            
+            });
+        }
+
+           
+        
+    </script>
+</body>
+</html>

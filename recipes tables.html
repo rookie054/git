@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>name</th>
+            <th>Ingredients</th>
+            <th id="d1">rating</th>
+            <th id="d2">cooking time</th>
+            <th id="d3">calories</th>
+        </tr>
+     
+       
+   <tr>
+   </tr>
+    </table>
+  <button id="h1" onclick="nextSet()">next</button>
+  <button id="h2" onclick="prevSet()">previous</button>
+
+    <script>
+        fetch('https://dummyjson.com/recipes?limit=10')
+        .then(response => response.json())
+        .then(data => {
+           
+var table = document.querySelector("table");
+data.recipes.forEach(recipe => {
+             row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${recipe.name}</td>
+                <td>${recipe.ingredients}</td>
+                <td>${recipe.rating}</td>
+                <td>${recipe.cookTimeMinutes}</td>
+                <td>${recipe.caloriesPerServing}</td>
+            `
+            table.appendChild(row);});
+        });
+
+       var rating= document.createElement("button");
+       rating.getElimentById("d1").appendChild(rating);
+
+     function nextSet(){
+        fetch('https://dummyjson.com/recipes?limit=10&skip=10')
+        .then(response => response.json())
+        .then(data => {
+           
+var table = document.querySelector("table");
+data.recipes.forEach(recipe => {
+    // table.innerHTML="";
+             row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${recipe.name}</td>
+                <td>${recipe.ingredients}</td>
+                <td>${recipe.rating}</td>
+                <td>${recipe.cookTimeMinutes}</td>
+                <td>${recipe.caloriesPerServing}</td>
+        `
+            table.appendChild(row);});
+       })};
+        //  function prevSet(){
+        //   fetch('https://dummyjson.com/recipes?limit=10&skip=0')
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     table.innerHTML = "";
+        //     data.recipes.forEach(recipe => {
+        //       row = document.createElement("tr");
+        //       row.innerHTML = `
+        //         <td>${recipe.name}</td>
+        //         <td>${recipe.ingredients}</td>
+        //         <td>${recipe.rating}</td>
+        //         <td>${recipe.cookTimeMinutes}</td>
+        //         <td>${recipe.caloriesPerServing}</td>
+        //       `;
+        //       table.appendChild(row);
+        //     });
+        //   })};
+    </script>
+</body>
+</html>
